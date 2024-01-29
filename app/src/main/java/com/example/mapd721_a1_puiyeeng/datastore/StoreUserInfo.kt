@@ -15,7 +15,7 @@ class StoreUserInfo (private val context: Context) {
     companion object {
         private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("UserInfo")
 
-        // Keys to uniquely identify user email and password in DataStore
+        // Keys to uniquely identify user email, password in DataStore
         val USER_USERNAME_KEY = stringPreferencesKey("user_username")
         val USER_PASSWORD_KEY = stringPreferencesKey("user_password")
         val USER_ID_KEY = stringPreferencesKey("user_id")
@@ -24,7 +24,7 @@ class StoreUserInfo (private val context: Context) {
     // Flow representing the user's stored username
     val getUsername: Flow<String?> = context.dataStore.data
         .map { preferences ->
-            // Retrieve the stored email value or return an empty string if not present
+            // Retrieve the stored username value or return an empty string if not present
             preferences[USER_USERNAME_KEY] ?: ""
         }
 
@@ -46,7 +46,7 @@ class StoreUserInfo (private val context: Context) {
     suspend fun saveInfo(username: String, password: String, id: String) {
         // Use the DataStore's edit function to make changes to the stored preferences
         context.dataStore.edit { preferences ->
-            // Update the user email, password and id values in the preferences
+            // Update the user username, password and id values in the preferences
             preferences[USER_USERNAME_KEY] = username
             preferences[USER_PASSWORD_KEY] = password
             preferences[USER_ID_KEY] = id
