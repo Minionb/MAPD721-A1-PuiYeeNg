@@ -63,13 +63,13 @@ fun MainScreen() {
     // datastore UserInfo
     val dataStore = StoreUserInfo(context)
 
-    // get saved username, password, id
+    // get saved username, email, id
     val savedUsernameState = dataStore.getUsername.collectAsState(initial = "")
-    val savedPassState = dataStore.getPassword.collectAsState(initial = "")
+    val savedEmailState = dataStore.getEmail.collectAsState(initial = "")
     val savedIdState = dataStore.getId.collectAsState(initial = "")
 
     var username by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
     var id by remember { mutableStateOf("") }
 
 
@@ -85,14 +85,14 @@ fun MainScreen() {
             label = { Text(text = "Username", color = Color.Gray, fontSize = 12.sp) },
         )
 
-        //password field
+        //email field
         OutlinedTextField(
             modifier = Modifier
                 .padding(start = 16.dp, end = 16.dp)
                 .fillMaxWidth(),
-            value = password,
-            onValueChange = { password = it },
-            label = { Text(text = "Password", color = Color.Gray, fontSize = 12.sp) },
+            value = email,
+            onValueChange = { email = it },
+            label = { Text(text = "Email", color = Color.Gray, fontSize = 12.sp) },
         )
 
         //id field
@@ -117,7 +117,7 @@ fun MainScreen() {
                     .padding(start = 16.dp, end = 16.dp),
                 onClick = {
                     username = savedUsernameState.value ?: ""
-                    password = savedPassState.value ?: ""
+                    email = savedEmailState.value ?: ""
                     id = savedIdState.value ?: ""
                 },
             )
@@ -140,9 +140,9 @@ fun MainScreen() {
                 onClick = {
                     //launch the class in a coroutine scope
                     scope.launch {
-                        dataStore.saveInfo(username, password, id)
+                        dataStore.saveInfo(username, email, id)
                         username = ""
-                        password = ""
+                        email = ""
                         id = ""
                     }
                 },
@@ -168,7 +168,7 @@ fun MainScreen() {
                         dataStore.clearInfo()
                     }
                     username = ""
-                    password = ""
+                    email = ""
                     id = ""
                 },
             )
