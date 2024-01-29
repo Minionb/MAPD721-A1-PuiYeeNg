@@ -38,7 +38,7 @@ class StoreUserInfo (private val context: Context) {
     // Flow representing the user's stored id
     val getId: Flow<String?> = context.dataStore.data
         .map { preferences ->
-            // Retrieve the stored password value or return an empty string if not present
+            // Retrieve the stored id value or return an empty string if not present
             preferences[USER_ID_KEY] ?: ""
         }
 
@@ -53,10 +53,9 @@ class StoreUserInfo (private val context: Context) {
         }
     }
 
-    suspend fun clearInfo() {
-        // Use the DataStore's edit function to make changes to the stored preferences
+    suspend fun clearInfo()
         context.dataStore.edit { preferences ->
-            // Update the user username, password and id values in the preferences
+            // Clear the info in the stored preferences
             preferences[USER_USERNAME_KEY] = ""
             preferences[USER_PASSWORD_KEY] = ""
             preferences[USER_ID_KEY] = ""
