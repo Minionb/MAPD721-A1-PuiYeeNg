@@ -53,7 +53,7 @@ class StoreUserInfo (private val context: Context) {
         }
     }
 
-    suspend fun clearInfo()
+    suspend fun clearInfo() {
         context.dataStore.edit { preferences ->
             // Clear the info in the stored preferences
             preferences[USER_USERNAME_KEY] = ""

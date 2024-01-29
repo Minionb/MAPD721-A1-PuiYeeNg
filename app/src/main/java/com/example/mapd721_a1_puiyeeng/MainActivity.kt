@@ -176,7 +176,34 @@ fun MainScreen() {
                 )
             }
         }
-        
+        Box(modifier = Modifier.weight(1f)) {
+            Spacer(modifier = Modifier.fillMaxWidth())
+        }
+        // Box with two lines of text at the bottom
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(150.dp)
+                .padding(16.dp)
+                .background(Color.LightGray),
+            contentAlignment = Alignment.BottomCenter
+        ) {
+            Column(modifier = Modifier.align(Alignment.Center)) {
+                Text(
+                    text = "Pui Yee Ng",
+                    fontSize = 28.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = "301366105",
+                    fontSize = 28.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+        }
+    }
+
+
 }
 
 
