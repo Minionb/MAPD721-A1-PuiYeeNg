@@ -60,10 +60,10 @@ fun MainScreen() {
     val context = LocalContext.current
     // scope
     val scope = rememberCoroutineScope()
-    // datastore Email
+    // datastore UserInfo
     val dataStore = StoreUserInfo(context)
 
-    // get saved email and password
+    // get saved username, password, id
     val savedUsernameState = dataStore.getUsername.collectAsState(initial = "")
     val savedPassState = dataStore.getPassword.collectAsState(initial = "")
     val savedIdState = dataStore.getId.collectAsState(initial = "")
@@ -75,7 +75,7 @@ fun MainScreen() {
 
     Column(modifier = Modifier.fillMaxSize()) {
 
-        //email field
+        //username field
         OutlinedTextField(
             modifier = Modifier
                 .padding(start = 16.dp, end = 16.dp)
@@ -85,6 +85,7 @@ fun MainScreen() {
             label = { Text(text = "Username", color = Color.Gray, fontSize = 12.sp) },
         )
 
+        //password field
         OutlinedTextField(
             modifier = Modifier
                 .padding(start = 16.dp, end = 16.dp)
@@ -94,6 +95,7 @@ fun MainScreen() {
             label = { Text(text = "Password", color = Color.Gray, fontSize = 12.sp) },
         )
 
+        //id field
         OutlinedTextField(
             modifier = Modifier
                 .padding(start = 16.dp, end = 16.dp)
@@ -104,8 +106,9 @@ fun MainScreen() {
         )
 
         Spacer(modifier = Modifier.height(20.dp))
-        // save button
+
         Row(modifier = Modifier.fillMaxWidth()) {
+            // Load button
             Button(
                 colors = ButtonDefaults.buttonColors(Color(0xFFFFA500)),
                 modifier = Modifier
@@ -127,6 +130,7 @@ fun MainScreen() {
                 )
             }
 
+            // Save button
             Button(
                 colors = ButtonDefaults.buttonColors(Color(0xFF006400)),
                 modifier = Modifier
@@ -152,6 +156,7 @@ fun MainScreen() {
                 )
             }
 
+            // Clear button
             Button(
                 modifier = Modifier
                     .weight(1f)
@@ -179,7 +184,7 @@ fun MainScreen() {
         Box(modifier = Modifier.weight(1f)) {
             Spacer(modifier = Modifier.fillMaxWidth())
         }
-        // Box with two lines of text at the bottom
+        // Box with student info
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -202,11 +207,9 @@ fun MainScreen() {
             }
         }
     }
-
-
 }
 
-
+// Preview of Main Screen
 @Preview(showBackground = true)
 @Composable
 fun MainScreenPreview() {
